@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="login">
+      <form #form="ngForm" (ngSubmit)="form.valid && form.submitted && setNickname()">
+        <div>
+          <label for="nicknameId">Nickname: </label>
+          <input [class.error-border]="nameModel.errors && form.submitted" required type="text" name="nick" #nameModel="ngModel" [(ngModel)]="nickname" id="nicknameId">
+        </div>
+        <div class="error" *ngIf="nameModel.errors && form.submitted">
+            Nickname is required
+        </div>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+  </div>
+  
