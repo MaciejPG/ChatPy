@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-login-form',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
+
+  @Input()
+  public showForm = false;
+
+  @Output()
+  public showFormChange = new EventEmitter<boolean>();
 
   public nickname = '';
 
@@ -16,9 +22,11 @@ export class LoginFormComponent implements OnInit {
 
   public setNickname() {
     localStorage.setItem('nickname', this.nickname);
+    this.showForm = true;
+    this.showFormChange.emit(this.showForm);
   }
 
-  public test(){
+  public test() {
     console.log(this.nickname);
   }
 }
