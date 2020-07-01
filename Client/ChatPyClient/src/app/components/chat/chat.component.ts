@@ -9,6 +9,52 @@ export class ChatComponent implements OnInit {
 
   public nicknamePicked = false;
 
+  public messages: string[] = [
+    'Message 1',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'Message 3',
+    'loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong mesaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaage']
+
   constructor() { }
 
   ngOnInit(): void {

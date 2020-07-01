@@ -1,0 +1,28 @@
+.flex-container {
+    display: flex;
+    background: grey;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    box-shadow: 8px 8px 4px 0px rgba(0,0,0,0.75);
+    border-radius: 3px;
+    position: absolute;
+    left:10%;
+    height: 800px;
+    overflow: auto;
+    align-items: center;
+}
+
+.flex-item {
+    word-break: break-word;
+    background-color: palevioletred;
+    text-align: center;
+    width: 90%;
+    margin: 5px 5px 0px 5px;
+    padding: 5px;
+}
+
+.blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}

@@ -1,5 +1,5 @@
 <app-login-form *ngIf="!nicknamePicked" [(showForm)]="nicknamePicked"></app-login-form>
 
-<div>
-    Chat is going to be displayed here.
+<div [class.blur]="!nicknamePicked" class="flex-container">
+    <div ngClass="flex-item" *ngFor="let message of messages">{{message}}</div>
 </div>
