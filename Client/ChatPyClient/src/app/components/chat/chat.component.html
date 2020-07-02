@@ -1,5 +1,7 @@
 <app-login-form *ngIf="!nicknamePicked" [(showForm)]="nicknamePicked"></app-login-form>
 
 <div [class.blur]="!nicknamePicked" class="flex-container">
-    <div ngClass="flex-item" *ngFor="let message of messages">{{message}}</div>
+    <div ngClass="flex-item" *ngFor="let message of messages">
+        <app-message [user]="message.user" [message]="message.message"></app-message>
+    </div>
 </div>

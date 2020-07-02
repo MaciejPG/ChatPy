@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Message } from 'src/app/models/message';
 
 @Component({
   selector: 'app-chat',
@@ -9,51 +10,26 @@ export class ChatComponent implements OnInit {
 
   public nicknamePicked = false;
 
-  public messages: string[] = [
-    'Message 1',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'Message 3',
-    'loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong mesaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaage']
+  public messages: Message[] = [
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+    {message: 'Message 1', user: 'UserNickname'},
+  ];
 
   constructor() { }
 

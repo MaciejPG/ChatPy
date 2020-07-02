@@ -1,0 +1,23 @@
+.flex-container {
+    display: flex;
+    background: blue;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 8px 8px 4px 0px rgba(0,0,0,0.75);
+    border-radius: 3px;
+    overflow: auto;
+}
+
+.flex-item {
+    word-break: break-word;
+    background-color: yellow;
+    text-align: left;
+    width: 90%;
+    margin: 5px 5px 0px 5px;
+    padding: 5px;
+}
+
+span {
+    font-size: 12px;
+    color: grey;
+}
