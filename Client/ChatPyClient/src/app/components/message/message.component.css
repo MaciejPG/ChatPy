@@ -1,23 +1,31 @@
 .flex-container {
     display: flex;
-    background: blue;
+    /* background: blue; */
     flex-direction: column;
     justify-content: flex-start;
-    box-shadow: 8px 8px 4px 0px rgba(0,0,0,0.75);
+    /* box-shadow: 8px 8px 4px 0px rgba(0,0,0,0.75); */
     border-radius: 3px;
     overflow: auto;
 }
 
 .flex-item {
     word-break: break-word;
-    background-color: yellow;
+    background-color: rgb(30, 30, 30);
     text-align: left;
+    color: rgb(239,239,239);
     width: 90%;
-    margin: 5px 5px 0px 5px;
+    margin: 0px 5px 0px 5px;
     padding: 5px;
+    /* border-top: 1px rgb(156,220,240) solid;
+    border-right: 1px rgb(156,220,240) solid;
+    border-left: 1px rgb(156,220,240) solid; */
+    border-radius: 6px;
 }
 
 span {
+    color: rgb(156,220,240);
+}
+
+.small{
     font-size: 12px;
-    color: grey;
 }
