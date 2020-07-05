@@ -1,6 +1,10 @@
-<app-login-form *ngIf="!nicknamePicked" [(showForm)]="nicknamePicked"></app-login-form>
+<app-login-form *ngIf="showForm" [(showForm)]="showForm"></app-login-form>
 
-<div [class.blur]="!nicknamePicked" class="flex-container">
+<ul [class.blur]="showForm">
+    <li><a (click)="showLoginForm()">Change nickname</a></li>
+  </ul>
+
+<div [class.blur]="showForm" class="flex-container">
     <div ngClass="flex-item" *ngFor="let message of messages">
         <app-message [user]="message.user" [message]="message.message"></app-message>
     </div>

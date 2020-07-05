@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class LoginFormComponent implements OnInit {
 
   @Input()
-  public showForm = false;
+  public showForm = true;
 
   @Output()
   public showFormChange = new EventEmitter<boolean>();
@@ -18,15 +18,12 @@ export class LoginFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    localStorage.removeItem('nickname');
   }
 
   public setNickname() {
     localStorage.setItem('nickname', this.nickname);
-    this.showForm = true;
+    this.showForm = false;
     this.showFormChange.emit(this.showForm);
-  }
-
-  public test() {
-    console.log(this.nickname);
   }
 }

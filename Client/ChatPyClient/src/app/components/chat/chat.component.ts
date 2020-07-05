@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Message } from 'src/app/models/message';
 
 @Component({
@@ -6,9 +6,9 @@ import { Message } from 'src/app/models/message';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
 
-  public nicknamePicked = false;
+  public showForm = true;
 
   public messages: Message[] = [
     {message: 'Message 1', user: 'UserNickname'},
@@ -36,4 +36,11 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public showLoginForm(){
+    this.showForm = true;
+  }
+
+  public ngOnDestroy(): void {
+    localStorage.removeItem('nickname');
+  }
 }
