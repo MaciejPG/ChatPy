@@ -1,5 +1,8 @@
+import { MessageService } from './../../services/message.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Message } from 'src/app/models/message';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -10,30 +13,14 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public showForm = true;
 
-  public messages: Message[] = [
-    {message: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`, user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-    {message: 'Message 1', user: 'UserNickname'},
-  ];
+  private gc = new Subject();
 
-  constructor() { }
+  public messages: Message[] = [];
+
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.fetchMessages();
   }
 
   public showLoginForm(){
@@ -42,5 +29,19 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     localStorage.removeItem('nickname');
+
+    this.gc.next();
+    this.gc.complete();
+  }
+
+  private fetchMessages(){
+    this.messageService.getMessages()
+    .pipe(takeUntil(this.gc))
+    .subscribe(messages => {
+      this.messages = messages;
+    },
+    err => {
+      this.messages = null;
+    });
   }
 }
