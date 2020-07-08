@@ -1,11 +1,14 @@
 <app-login-form *ngIf="showForm" [(showForm)]="showForm"></app-login-form>
 
 <ul [class.blur]="showForm">
-    <li><a (click)="showLoginForm()">Change nickname</a></li>
-  </ul>
+  <li><a (click)="showLoginForm()">Change nickname</a></li>
+</ul>
 
 <div [class.blur]="showForm" class="flex-container">
-    <div ngClass="flex-item" *ngFor="let message of messages">
-        <app-message [user]="message.user" [message]="message.message"></app-message>
-    </div>
+  <div ngClass="flex-item" *ngFor="let message of messages">
+    <app-message [user]="message.user" [message]="message.message"></app-message>
+  </div>
+</div>
+<div class="message-sender" [class.blur]="showForm">
+  <app-message-sender></app-message-sender>
 </div>

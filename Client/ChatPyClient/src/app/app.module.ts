@@ -8,13 +8,15 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { MessageComponent } from './components/message/message.component';
+import { MessageSenderComponent } from './components/message-sender/message-sender.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
     ChatComponent,
-    MessageComponent
+    MessageComponent,
+    MessageSenderComponent
   ],
   imports: [
     BrowserModule,
