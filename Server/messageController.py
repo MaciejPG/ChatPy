@@ -9,7 +9,23 @@ app.config["DEBUG"] = True
 
 messages = [
     {'user': 'asdasfasdas1', 'message':'Message from server1'},
-    {'user': 'asdasfasdas2', 'message':'Message from server2'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'asdasfasdas3', 'message':'Message from server3'},
     {'user': 'asdasfasdas3', 'message':'Message from server3'},
 ]
 
