@@ -1,3 +1,4 @@
+import { MessageService } from './../../services/message.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +6,18 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './message-sender.component.html',
   styleUrls: ['./message-sender.component.css']
 })
-export class MessageSenderComponent implements OnInit {
+export class MessageSenderComponent {
 
-  constructor() { }
+  constructor(private messageRepository: MessageService) { }
 
-  ngOnInit(): void {
+  public onEnter(event: KeyboardEvent) {
+    if (event.key !== 'Enter') {
+      return;
+    }
+
+    this.messageRepository.postMessage({ message: 'test', user: 'maciek' })
+      .subscribe(data => {
+        console.log(data, 'succesful');
+      });
   }
-
 }

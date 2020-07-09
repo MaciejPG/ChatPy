@@ -1,1 +1,20 @@
-p {background-color: hotpink; padding: 10px; margin: 0;}
+input {
+    width: 80%;
+    height: 18px;
+    padding: 10px;
+    margin: 0;
+    border-color: rgb(100, 65, 164);
+    border-radius: 5px;
+    outline: 0;
+    background-color: rgb(60, 60, 60);
+}
+
+input:focus {
+    background-color: black;
+    color: white;
+}
+
+.sender {
+    display: block;
+    text-align: center;
+}

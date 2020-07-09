@@ -1,11 +1,14 @@
 import flask
 from models.message import Message
 from flask import request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = flask.Flask(__name__)
+# CORS(app, resources ={r"/*":{"origins":"*"}})
 CORS(app)
 app.config["DEBUG"] = True
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 messages = [
     {'user': 'asdasfasdas1', 'message':'Message from server1'},
@@ -29,13 +32,7 @@ messages = [
     {'user': 'asdasfasdas3', 'message':'Message from server3'},
 ]
 
-@app.route('/', methods=['GET'])
-def home():
-    return jsonify(messages)
-
-app.run()
-
-@app.route('/get', methods=['GET'])
+@app.route('/get-messages', methods=['GET'])
 def getMessages():
     return jsonify(messages)
 
@@ -43,4 +40,9 @@ def getMessages():
 def post():
     response = request.json
     message = Message(**response)
-    print(message)
+    messages.append(message)
+    print(message.message, message.user)
+    print(len(messages))
+    return response
+
+app.run()
