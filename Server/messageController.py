@@ -11,6 +11,7 @@ CORS(app)
 app.config["DEBUG"] = True
 app.config['SECRET_KEY']='such_a_secret'
 socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
@@ -45,13 +46,22 @@ def post():
     response = request.json
     return response
 
-@socketio.on('json', namespace='/test')
-def send_message(json):
-    messageObj = Message(**json)
-    messages.append(messageObj)
-    print(messageObj.message, messageObj.user)
-    print(len(messages))
-    send(messageObj, json = True, namespace = '/test', skip_sid=True)
+# @socketio.on('newMessage')
+# def send_message(json):
+#     messageObj = Message(**json)
+#     messages.append(messageObj)
+#     print(messageObj.message, messageObj.user)
+#     print(len(messages))
+#     send(messageObj)
+
+# @socketio.on('newMessage')
+# def get_messages():
+#     print('aaaaaaaaaa!!')
+#     return messages
+
+@socketio.on('connect')
+def handle_my_custom_event():
+    print('It works')
 
 # @socketio.on('message')
 # def handle_message(message):
