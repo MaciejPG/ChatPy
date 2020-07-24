@@ -1,3 +1,3 @@
 <div class="sender">
-  <input (keydown)="onEnter($event)" type="text" placeholder="Send a message">
+  <input [(ngModel)]="value" (keydown)="onEnter($event)" type="text" placeholder="Send a message">
 </div>

@@ -1,3 +1,4 @@
+import { ChatService } from './../../services/chat.service';
 import { MessageService } from './../../services/message.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Message } from 'src/app/models/message';
@@ -17,10 +18,16 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public messages: Message[] = [];
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private messageService: MessageService,
+    private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.fetchMessages();
+    this.chatService.onNewMessage().subscribe(msg => {
+      this.messages.push(msg);
+      console.log(this.messages);
+    });
   }
 
   public showLoginForm(){

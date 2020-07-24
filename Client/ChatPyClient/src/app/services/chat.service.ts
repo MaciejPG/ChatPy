@@ -26,13 +26,13 @@ export class ChatService {
   }
 
   // EMITTER
-  public sendMessage(msg: Message) {
-    this.socket.emit('sendMessage', { message: msg });
+  public postMessage(msg: Message) {
+    this.socket.emit('postMessage', { message: msg });
   }
 
   // HANDLER
   public onNewMessage() {
-    return Observable.create(observer => {
+    return new Observable<Message>(observer => {
       this.socket.on('newMessage', msg => {
         observer.next(msg);
       });

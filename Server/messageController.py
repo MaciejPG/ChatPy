@@ -4,6 +4,7 @@ from flask import request, jsonify
 from flask_cors import CORS, cross_origin
 from flask_socketio import SocketIO
 from flask_socketio import send, emit
+import json
 
 app = flask.Flask(__name__)
 # CORS(app, resources ={r"/*":{"origins":"*"}})
@@ -16,25 +17,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 messages = [
-    {'user': 'asdasfasdas1', 'message':'Message from server1'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
-    {'user': 'asdasfasdas3', 'message':'Message from server3'},
+    {'user': 'ChatPy', 'message':'Welcome.'},
 ]
 
 @app.route('/get-messages', methods=['GET'])
@@ -60,8 +43,20 @@ def post():
 #     return messages
 
 @socketio.on('connect')
-def handle_my_custom_event():
+def on_webscokect_connection_established():
     print('It works')
+
+@socketio.on('postMessage')
+def handle_sent_message(msg):
+    messages.append(msg['message'])
+    print(messages)
+    emit('newMessage', msg['message'], broadcast = True, json = True)
+    # print(len(messages))
+    # print(msg)
+
+# @socketio.on('handleNewMessage')
+# def handle_new_message(msg):
+#     emit()
 
 # @socketio.on('message')
 # def handle_message(message):

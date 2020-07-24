@@ -9,13 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageSenderComponent implements OnInit {
 
+  public value = '';
+
   constructor(
     private messageRepository: MessageService,
     private service: ChatService) { }
 
   public ngOnInit(): void {
     this.service.onConnection().subscribe(data => {
-      console.log('Im in.')
+      console.log('Im in.');
+    });
+
+    this.service.onNewMessage().subscribe(data => {
+      console.log(data);
     });
   }
 
@@ -24,11 +30,12 @@ export class MessageSenderComponent implements OnInit {
       return;
     }
 
-    this.service.sendMessage({ message: 'test', user: 'maciek' });
+    this.service.postMessage({user: 'maciek1123213', message: this.value,  });
+    this.value = '';
 
-    this.messageRepository.postMessage({ message: 'test', user: 'maciek' })
-      .subscribe(data => {
-        console.log(data, 'succesful');
-      });
+    // this.messageRepository.postMessage({ message: 'test', user: 'maciek' })
+    //   .subscribe(data => {
+    //     console.log(data, 'succesful');
+    //   });
   }
 }
