@@ -1,6 +1,7 @@
 import { ChatService } from './../../services/chat.service';
 import { MessageService } from './../../services/message.service';
 import { Component, OnInit } from '@angular/core';
+import { NickNameService } from 'src/app/services/nick-name.service';
 
 @Component({
   selector: 'app-message-sender',
@@ -13,7 +14,8 @@ export class MessageSenderComponent implements OnInit {
 
   constructor(
     private messageRepository: MessageService,
-    private service: ChatService) { }
+    private service: ChatService,
+    private nickNameService: NickNameService) { }
 
   public ngOnInit(): void {
     this.service.onNewMessage().subscribe(data => {
@@ -26,7 +28,7 @@ export class MessageSenderComponent implements OnInit {
       return;
     }
 
-    this.service.postMessage({user: localStorage.getItem('nickname'), message: this.value,  });
+    this.service.postMessage({user: this.nickNameService.getNickName(), message: this.value,  });
     this.value = '';
 
     // this.messageRepository.postMessage({ message: 'test', user: 'maciek' })

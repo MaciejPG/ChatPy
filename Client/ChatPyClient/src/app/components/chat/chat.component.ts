@@ -26,7 +26,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.fetchMessages();
     this.chatService.onNewMessage().subscribe(msg => {
       this.messages.push(msg);
-      console.log(this.messages);
+      console.log(this.messages, msg);
     });
   }
 
@@ -35,7 +35,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    localStorage.removeItem('nickname');
+    this.chatService.onLeave();
+
 
     this.gc.next();
     this.gc.complete();
