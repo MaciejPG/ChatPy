@@ -1,3 +1,4 @@
+import { Nicknames } from './../models/nicknames';
 import { Message } from './../models/message';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -23,6 +24,14 @@ export class ChatService {
         observer.next(msg);
       });
     });
+  }
+
+  public onLogin() {
+    this.socket.emit('login', localStorage.getItem('nickname'));
+  }
+
+  public onNicknameChange(previousNickname: string) {
+    this.socket.emit('nicknameChange', { previousNickname, newNickname: localStorage.getItem('nickname') } as Nicknames);
   }
 
   // EMITTER

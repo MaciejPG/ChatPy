@@ -1,3 +1,4 @@
+import { ChatService } from './../../services/chat.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -15,15 +16,42 @@ export class LoginFormComponent implements OnInit {
 
   public nickname = '';
 
-  constructor() { }
+  constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
-    localStorage.removeItem('nickname');
+    this.chatService.onConnection().subscribe(data => {
+      console.log('Im in.');
+    });
   }
 
   public setNickname() {
+    const previousNickname = localStorage.getItem('nickname');
+    console.log(previousNickname);
+    this.handleNicknameModification(previousNickname);
+
+    this.setFormVisibility();
+    this.handleServerEvents(previousNickname);
+  }
+
+  private handleNicknameModification(previousNickname: string) {
+    if (previousNickname) {
+      console.log('removing');
+      localStorage.removeItem('nickname');
+    }
     localStorage.setItem('nickname', this.nickname);
+  }
+
+  private setFormVisibility() {
     this.showForm = false;
     this.showFormChange.emit(this.showForm);
+  }
+
+  private handleServerEvents(previousNickname: string) {
+    if (previousNickname) {
+      this.chatService.onNicknameChange(previousNickname);
+    }
+    else {
+      this.chatService.onLogin();
+    }
   }
 }

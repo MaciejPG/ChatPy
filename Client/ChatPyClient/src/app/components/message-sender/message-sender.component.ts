@@ -16,10 +16,6 @@ export class MessageSenderComponent implements OnInit {
     private service: ChatService) { }
 
   public ngOnInit(): void {
-    this.service.onConnection().subscribe(data => {
-      console.log('Im in.');
-    });
-
     this.service.onNewMessage().subscribe(data => {
       console.log(data);
     });
@@ -30,7 +26,7 @@ export class MessageSenderComponent implements OnInit {
       return;
     }
 
-    this.service.postMessage({user: 'maciek1123213', message: this.value,  });
+    this.service.postMessage({user: localStorage.getItem('nickname'), message: this.value,  });
     this.value = '';
 
     // this.messageRepository.postMessage({ message: 'test', user: 'maciek' })
