@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,6 +9,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { ChatComponent } from './components/chat/chat.component';
 import { MessageComponent } from './components/message/message.component';
 import { MessageSenderComponent } from './components/message-sender/message-sender.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,15 @@ import { MessageSenderComponent } from './components/message-sender/message-send
     LoginFormComponent,
     ChatComponent,
     MessageComponent,
-    MessageSenderComponent
+    MessageSenderComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     FormsModule

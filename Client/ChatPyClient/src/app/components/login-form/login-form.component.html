@@ -1,15 +1,20 @@
 <div class="container">
-    <div class="login">
-      <form #form="ngForm" (ngSubmit)="form.valid && form.submitted && setNickname()">
-        <div>
-          <label for="nicknameId">Nickname: </label>
-          <input [class.error-border]="nameModel.errors && form.submitted" required type="text" name="nick" #nameModel="ngModel" [(ngModel)]="nickname" id="nicknameId">
-        </div>
-        <div class="error" *ngIf="nameModel.errors && form.submitted">
-            Nickname is required
-        </div>
-        <button type="submit">Join</button>
-      </form>
-    </div>
+  <div class="login">
+    <form [formGroup]="form" (ngSubmit)="setNickname()">
+      <div>
+        <label for="nicknameId">Nickname:
+          <input
+            [class.error-border]="submitted && form?.status === 'INVALID' || !form?.controls?.nicknameControl.value && submitted"
+            formControlName="nicknameControl">
+        </label>
+      </div>
+      <div class="error" *ngIf="submitted && !form?.controls?.nicknameControl.value">
+        Nickname is required.
+      </div>
+      <div class="error" *ngIf="submitted && form?.status === 'INVALID' && form?.controls?.nicknameControl.value">
+        Nickname already taken.
+      </div>
+      <button type="submit">Join</button>
+    </form>
   </div>
-  
+</div>

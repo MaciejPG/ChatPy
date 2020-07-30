@@ -1,3 +1,4 @@
+import { UsersService } from './../../services/users.service';
 import { ChatService } from './../../services/chat.service';
 import { MessageService } from './../../services/message.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -17,12 +18,18 @@ export class ChatComponent implements OnInit, OnDestroy {
   private gc = new Subject();
 
   public messages: Message[] = [];
+  public users: string[] = [];
 
   constructor(
     private messageService: MessageService,
-    private chatService: ChatService) { }
+    private chatService: ChatService,
+    private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.usersService.usersChanged.subscribe(users => {
+      this.users = users;
+    });
+
     this.fetchMessages();
     this.chatService.onNewMessage().subscribe(msg => {
       this.messages.push(msg);
@@ -30,7 +37,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
   }
 
-  public showLoginForm(){
+  public showLoginForm() {
     this.showForm = true;
   }
 
@@ -42,14 +49,14 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.gc.complete();
   }
 
-  private fetchMessages(){
+  private fetchMessages() {
     this.messageService.getMessages()
-    .pipe(takeUntil(this.gc))
-    .subscribe(messages => {
-      this.messages = messages;
-    },
-    err => {
-      this.messages = null;
-    });
+      .pipe(takeUntil(this.gc))
+      .subscribe(messages => {
+        this.messages = messages;
+      },
+        err => {
+          this.messages = null;
+        });
   }
 }

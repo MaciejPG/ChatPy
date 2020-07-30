@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class NickNameService {
 
-  private previousNickName: string;
-  private nickName: string;
+  private previousNickName = '';
+  private nickName = '';
   constructor() { }
 
   public setNickName(nickName: string) {
@@ -20,5 +20,10 @@ export class NickNameService {
 
   public getPreviousNickName() {
     return this.previousNickName;
+  }
+
+  public setDefault(){
+    this.previousNickName = '';
+    this.nickName = '';
   }
 }

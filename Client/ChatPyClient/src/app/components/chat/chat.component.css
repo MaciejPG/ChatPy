@@ -48,9 +48,30 @@ li a:hover {
   -webkit-filter: blur(8px);
 }
 
+.users-list{
+  overflow-y: hidden;
+  padding: 5px;
+  margin:5px
+}
+
 .message-sender {
   width: 100%;
   overflow-y: hidden;
   padding: 0;
   margin: 0;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  width: 75%;
+}
+
+.right {
+  width: 25%;
+}
+
+

@@ -19,15 +19,16 @@ export class ChatService {
     // });
   }
 
-  public onConnection() {
-    return new Observable(observer => {
-      this.socket.on('connect', msg => {
-        observer.next(msg);
-      });
-    });
-  }
+  // public onConnection() {
+  //   return new Observable(observer => {
+  //     this.socket.on('connect', msg => {
+  //       this.nickNameService.setDefault();
+  //       observer.next(msg);
+  //     });
+  //   });
+  // }
 
-  // @HostListener('window:beforeunload', ['$event'])
+  // // @HostListener('window:beforeunload', ['$event'])
   // public onDisconnect(){
   //   return new Observable(observer => {
   //     this.socket.on('disconnect', msg => {
@@ -60,6 +61,14 @@ export class ChatService {
     return new Observable<Message>(observer => {
       this.socket.on('newMessage', msg => {
         observer.next(msg);
+      });
+    });
+  }
+
+  public onUsersChanged(){
+    return new Observable<string[]>(observer => {
+      this.socket.on('usersChanged', users => {
+        observer.next(users);
       });
     });
   }
